@@ -1,0 +1,48 @@
+{
+  "name": "Fishing Web App",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-spring-boot-dashboard",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/usr/lib/jvm/msopenjdk-21"
+          }
+        ],
+        "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-21"
+      }
+    }
+  },
+  
+  "forwardPorts": [8080, 5173, 5432],
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "postCreateCommand": "echo 'DevContainer ready!'",
+  
+  "remoteUser": "vscode"
+}
