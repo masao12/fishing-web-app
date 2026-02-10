@@ -15,6 +15,15 @@
 - Infra: Docker, Docker Compose
 - テスト: JUnit 5（ATDDはCucumber + RestAssuredを予定）
 
+## 開発環境（Docker）
+- DevContainerは開発用コンテナ（service: dev）に接続する。
+- コンテナ構成は dev / backend / web / db の4サービス。
+- devはJava 21 + Node 18入りで、IDE作業用。
+- backendは実行用の単一責任コンテナとし、DBのヘルスチェック完了後に起動する。
+- webはViteを0.0.0.0で起動し、ホストブラウザから動作確認する。
+- dbはPostgreSQL 16、tmpfsで毎回クリーン。必要ならマイグレーションで状態を定義する。
+- 既定ポート: FE=5173, BE=8080, DB=5432。
+
 ## アーキテクチャ/設計
 - Clean Architecture寄りのレイヤ分離を優先。
 - ドメインロジックはUseCase/Serviceに置き、Controllerに寄せない。
