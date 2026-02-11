@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:bookworm
+FROM mcr.microsoft.com/devcontainers/java:21
 
 USER root
 
@@ -7,10 +7,9 @@ RUN apt-get update \
         curl \
         ca-certificates \
         gnupg \
-        openjdk-21-jdk \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*

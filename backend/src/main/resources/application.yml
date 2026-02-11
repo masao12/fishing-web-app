@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: fishing-backend
+  datasource:
+    url: jdbc:postgresql://db:5432/fishing
+    username: app
+    password: app
+    driver-class-name: org.postgresql.Driver
