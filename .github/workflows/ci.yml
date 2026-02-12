@@ -7,10 +7,15 @@ name: CI - Monorepo with Selective Builds
   pull_request:
     branches: [main, develop]
 
+permissions:
+  contents: read
+
 jobs:
   detect-changes:
     name: Detect Changes
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       backend: ${{ steps.changes.outputs.backend }}
       web: ${{ steps.changes.outputs.web }}
@@ -66,6 +71,8 @@ jobs:
     needs: detect-changes
     if: needs.detect-changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     services:
       postgres:
@@ -112,6 +119,8 @@ jobs:
     needs: detect-changes
     if: needs.detect-changes.outputs.web == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -144,6 +153,8 @@ jobs:
     needs: detect-changes
     if: needs.detect-changes.outputs.doc == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -171,6 +182,8 @@ jobs:
     needs: [backend-test, web-test, doc-check]
     if: always()
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check status
         run: |
