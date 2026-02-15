@@ -9,6 +9,25 @@ function App() {
   const [leaderUnit, setLeaderUnit] = useState('lb')
   const peUnitLabel = peUnit === 'go' ? '号（PE#）' : 'mm'
   const leaderUnitLabel = leaderUnit === 'lb' ? 'lb' : 'kg'
+  const multiResults = [
+    {
+      field: '港湾',
+      items: [{ pe: '0.6 号', leader: '14 lb', note: '汎用バランス' }],
+    },
+    {
+      field: 'サーフ',
+      items: [{ pe: '1.0 号', leader: '22 lb', note: '飛距離重視' }],
+    },
+    {
+      field: '磯・ゴロタ',
+      items: [{ pe: '1.0 号', leader: '22 lb', note: '擦れ対策' }],
+    },
+  ]
+  const singleResult = {
+    pe: '0.8 号',
+    leader: '16 lb フロロ',
+    note: '潮と地形に合わせて調整。まずはシンプルに。',
+  }
 
   const handleStartMode = (mode: 'pe' | 'leader' | 'species') => {
     setStartMode(mode)
@@ -22,7 +41,7 @@ function App() {
     <div className="app">
       <header className="hero">
         <div className="brand">Fishing Setup Lab</div>
-        <h1>初心者向けのセッティングを、素早く。</h1>
+        <h1>ベストな結束バランスを、もっとスピーディーに。</h1>
         <p className="subtitle">
           PEライン・リーダーから始めるか、魚種とフィールドを選んでおすすめを
           <span className="no-break">すぐ</span>確認できます。
@@ -188,22 +207,48 @@ function App() {
             <h2>プレビュー</h2>
             <span className="tag">MVP</span>
           </div>
-          <div className="result">
-            <div>
-              <div className="label">おすすめリーダー</div>
-              <div className="value">16-20 lb フロロ</div>
-            </div>
-            <div>
-              <div className="label">おすすめPE</div>
-              <div className="value">0.8-1.0 号</div>
-            </div>
-            <div>
-              <div className="label">メモ</div>
-              <div className="value small">
-                潮と地形に合わせて調整。まずはシンプルに。
+          {startMode === 'species' ? (
+            <div className="result">
+              <div>
+                <div className="label">おすすめリーダー</div>
+                <div className="value">{singleResult.leader}</div>
+              </div>
+              <div>
+                <div className="label">おすすめPE</div>
+                <div className="value">{singleResult.pe}</div>
+              </div>
+              <div>
+                <div className="label">メモ</div>
+                <div className="value small">{singleResult.note}</div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="result-list">
+              {multiResults.map((group) => (
+                <div className="result-group" key={group.field}>
+                  <div className="group-title">{group.field}</div>
+                  <div className="group-items">
+                    {group.items.map((item, index) => (
+                      <div className="result-card" key={`${group.field}-${index}`}>
+                        <div>
+                          <div className="label">候補 {index + 1}</div>
+                          <div className="value">PE {item.pe}</div>
+                        </div>
+                        <div>
+                          <div className="label">リーダー</div>
+                          <div className="value">{item.leader}</div>
+                        </div>
+                        <div>
+                          <div className="label">メモ</div>
+                          <div className="value small">{item.note}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="links">
             <button className="ghost" type="button">
               共有

@@ -66,6 +66,7 @@
   display: grid;
   gap: 18px;
   animation: rise 0.7s ease 0.1s both;
+  align-self: start;
 }
 
 .panel.highlight {
@@ -304,6 +305,39 @@
   background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   border: 1px solid rgba(186, 205, 226, 0.7);
+}
+
+.result-list {
+  display: grid;
+  gap: 12px;
+}
+
+.result-group {
+  display: grid;
+  gap: 10px;
+}
+
+.group-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0b4a73;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.group-items {
+  display: grid;
+  gap: 12px;
+}
+
+.result-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(186, 205, 226, 0.7);
+  box-shadow: 0 12px 24px rgba(11, 42, 74, 0.08);
 }
 
 .label {
