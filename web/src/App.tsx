@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import amazonLogo from './assets/amazon-logo.webp'
+import rakutenLogo from './assets/rakuten-logo.svg'
 import './App.css'
 
 function App() {
@@ -212,10 +214,36 @@ function App() {
               <div>
                 <div className="label">おすすめリーダー</div>
                 <div className="value">{singleResult.leader}</div>
+                <details className="shop-details">
+                  <summary className="shop-label">このセッティングで買い物に行く</summary>
+                  <div className="shop-actions">
+                    <button className="shop-button" type="button">
+                      <img src={rakutenLogo} alt="楽天" />
+                      楽天
+                    </button>
+                    <button className="shop-button" type="button">
+                      <img src={amazonLogo} alt="Amazon" />
+                      Amazon
+                    </button>
+                  </div>
+                </details>
               </div>
               <div>
                 <div className="label">おすすめPE</div>
                 <div className="value">{singleResult.pe}</div>
+                <details className="shop-details">
+                  <summary className="shop-label">このセッティングで買い物に行く</summary>
+                  <div className="shop-actions">
+                    <button className="shop-button" type="button">
+                      <img src={rakutenLogo} alt="楽天" />
+                      楽天
+                    </button>
+                    <button className="shop-button" type="button">
+                      <img src={amazonLogo} alt="Amazon" />
+                      Amazon
+                    </button>
+                  </div>
+                </details>
               </div>
               <div>
                 <div className="label">メモ</div>
@@ -233,10 +261,36 @@ function App() {
                         <div>
                           <div className="label">候補 {index + 1}</div>
                           <div className="value">PE {item.pe}</div>
+                          <details className="shop-details">
+                            <summary className="shop-label">このセッティングで買い物に行く</summary>
+                            <div className="shop-actions">
+                              <button className="shop-button" type="button">
+                                <img src={rakutenLogo} alt="楽天" />
+                                楽天
+                              </button>
+                              <button className="shop-button" type="button">
+                                <img src={amazonLogo} alt="Amazon" />
+                                Amazon
+                              </button>
+                            </div>
+                          </details>
                         </div>
                         <div>
                           <div className="label">リーダー</div>
                           <div className="value">{item.leader}</div>
+                          <details className="shop-details">
+                            <summary className="shop-label">このセッティングで買い物に行く</summary>
+                            <div className="shop-actions">
+                              <button className="shop-button" type="button">
+                                <img src={rakutenLogo} alt="楽天" />
+                                楽天
+                              </button>
+                              <button className="shop-button" type="button">
+                                <img src={amazonLogo} alt="Amazon" />
+                                Amazon
+                              </button>
+                            </div>
+                          </details>
                         </div>
                         <div>
                           <div className="label">メモ</div>

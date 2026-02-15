@@ -101,6 +101,11 @@
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.toggle-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(11, 42, 74, 0.12);
+}
+
 .toggle-item input {
   appearance: none;
   width: 0;
@@ -305,6 +310,69 @@
   background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   border: 1px solid rgba(186, 205, 226, 0.7);
+}
+
+.shop-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.shop-details {
+  margin-top: 8px;
+}
+
+.shop-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5f74;
+  cursor: pointer;
+  list-style: none;
+}
+
+.shop-label::-webkit-details-marker {
+  display: none;
+}
+
+.shop-label::after {
+  content: '▾';
+  margin-left: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.shop-details[open] .shop-label::after {
+  content: '▾';
+  transform: rotate(180deg);
+}
+
+.shop-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid #b7c8dd;
+  background: #f3f7fd;
+  color: #0b2a4a;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-button img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.shop-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(11, 42, 74, 0.12);
 }
 
 .result-list {
