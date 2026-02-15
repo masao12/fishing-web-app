@@ -3,17 +3,15 @@
 
 ## 開発環境セットアップ（初回のみ）
 1. Docker Desktop をインストールして起動する（WSL2有効化）。
-2. VS Code でこのリポジトリを開く。
-3. コマンドパレットで `Dev Containers: Rebuild and Reopen in Container` を実行。
-4. DevContainer 内のターミナルで以下を実行。
-	- `docker compose up -d`
-	- `docker compose pull web`
+2. VS Code でこのリポジトリをローカルで開く。
+3. ターミナルで以下を実行。
+	- `docker compose up -d db backend dev`
 	- `docker compose run --rm --workdir /app web npm install`
 	- `docker compose up -d web`
 
 ## 日々の起動手順
-1. VS Code で `Dev Containers: Reopen in Container` を実行。
-2. DevContainer 内のターミナルで以下を実行。
+1. VS Code でこのリポジトリをローカルで開く。
+2. ターミナルで以下を実行。
 	- `docker compose up -d`
 
 ## 停止
@@ -22,6 +20,30 @@
 ## 動作確認
 - Frontend: http://localhost:5173
 - Backend: http://localhost:8080
+
+## デプロイ（暫定）
+本番構成は未確定のため、現時点の暫定手順です。
+
+### 1. フロントエンドをビルド
+```
+docker compose run --rm --workdir /app web npm run build
+```
+
+生成物は `web/dist` に出力されます。静的ホスティング（Nginx / S3 / Cloudflare Pages など）へ配置します。
+
+### 2. バックエンドをビルド
+```
+docker compose run --rm --workdir /app backend ./mvnw clean package
+```
+
+生成物は `backend/target` に出力されます。サーバー上で Java 21 で実行するか、
+Docker 化する方針に合わせて運用します。
+
+### 3. 環境変数・設定
+- DB 接続先、ユーザー、パスワードは `backend/src/main/resources/application.yml` をベースに調整。
+- 本番では Secrets 管理を使い、平文のパスワードは避ける。
+
+※ 本番用の Dockerfile やリバースプロキシ構成は今後決めます。
 
 ## Web コンテナが落ちる場合の復旧手順
 `vite: not found` が出る場合は、`node_modules` が壊れている可能性が高いです。
