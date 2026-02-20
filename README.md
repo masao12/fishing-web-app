@@ -1,6 +1,25 @@
 # fishing-web-app
 釣りの便利アプリの集合体
 
+## プロジェクト概要
+釣り初心者向けのセッティング支援Webアプリ（MVP開発中）
+
+**主要機能**:
+- PEラインから適切なリーダーを推薦
+- リーダーから適切なPEラインを推薦
+- 対象魚種とフィールドから推奨セッティングを表示
+
+**技術スタック**:
+- Backend: Java 21, Spring Boot 4, JPA, PostgreSQL
+- Frontend: React 19, TypeScript, Vite
+- Infrastructure: Docker Compose
+
+## ドキュメント
+- [アーキテクチャレビュー](doc/architecture-review.md) - モノレポ vs マルチレポの分析
+- [モノレポ運用ベストプラクティス](doc/monorepo-best-practices.md) - CI/CD、バージョニング戦略
+- [依存関係管理](doc/dependencies.md) - コンポーネント間の互換性管理
+- [DB設計](doc/db-design.md) - データベーススキーマ
+
 ## 開発環境セットアップ（初回のみ）
 1. Docker Desktop をインストールして起動する（WSL2有効化）。
 2. VS Code でこのリポジトリをローカルで開く。
